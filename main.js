@@ -248,7 +248,7 @@ gui.addColor(options, "sphereColor").onChange(function (e) {
 gui.add(options, "wireframe").onChange(function (e) {
   sphere.material.wireframe = e;
 });
-gui.add(options, "speed", 0, 0.1);
+gui.add(options, "speed", 0, 0.05);
 gui.add(options, "angle", 0, 1);
 gui.add(options, "penumbra", 0, 1);
 gui.add(options, "intensity", 0, 10000);
@@ -293,32 +293,32 @@ function animate() {
 
   // mercury's orbit around the sun
   mercuryShape.position.x = 10 * Math.cos(step);
-  mercuryShape.position.y = 1 - 20 * Math.sin(step);
+  mercuryShape.position.y = 11 - 20.7686 * Math.sin(step);
   mercuryShape.position.z = 10 * Math.sin(step);
 
   // venus's orbit around the sun
   venusShape.position.x = 12 * Math.cos(step);
-  venusShape.position.y = 2 + 24 * Math.sin(step);
+  venusShape.position.y = 12.868 + 24.45745 * Math.sin(step);
   venusShape.position.z = 12 * Math.sin(step);
 
   // mars's orbit around the sun
   marsShape.position.x = 14 * Math.cos(step);
-  marsShape.position.y = 3 - 28 * Math.sin(step);
+  marsShape.position.y = 13.453 - 28.54 * Math.sin(step);
   marsShape.position.z = 14 * Math.sin(step);
 
   // Earth's orbit around the sun
   sphere.position.x = 17 * Math.cos(step);
-  sphere.position.y = 2 + 34 * Math.sin(step);
+  sphere.position.y = 2.214 - (34.45 * Math.sin(step)) / 2;
   sphere.position.z = 17 * Math.sin(step);
 
   // jupiter's orbit around the sun
   jupiterShape.position.x = 25 * Math.cos(step);
-  jupiterShape.position.y = 7 + 50 * Math.sin(step);
+  jupiterShape.position.y = 7.343 + (50.343 * Math.sin(step)) / 4;
   jupiterShape.position.z = 25 * Math.sin(step);
 
   // saturn's orbit around the sun
   saturnShape.position.x = 35 * Math.cos(step);
-  saturnShape.position.y = 70 * Math.sin(step) - 10;
+  saturnShape.position.y = 5.543 - (70.34643 * Math.sin(step)) / 2;
   saturnShape.position.z = 35 * Math.sin(step);
 
   // satrun ring
@@ -331,12 +331,12 @@ function animate() {
 
   // uranus's orbit around the sun
   uranusShape.position.x = 42 * Math.cos(step);
-  uranusShape.position.y = 5 + 84 * Math.sin(step);
+  uranusShape.position.y = 13.5 - (84.7896 * Math.sin(step)) / 9;
   uranusShape.position.z = 42 * Math.sin(step);
 
   // neptune's orbit around the sun
   neptuneShape.position.x = 49 * Math.cos(step);
-  neptuneShape.position.y = 3 - 98 * Math.sin(step);
+  neptuneShape.position.y = (98.3534 * Math.sin(step)) / 76 - 1.3;
   neptuneShape.position.z = 49 * Math.sin(step);
 
   // Moon's orbit around the earth
