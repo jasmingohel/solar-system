@@ -141,6 +141,40 @@ const neptuneMaterial = new THREE.MeshStandardMaterial({
 
 // -------------
 
+const particleCount = 1000;
+const particles = new THREE.Points(
+  new THREE.BufferGeometry(),
+  new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 0.1,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthTest: false,
+  })
+);
+
+const positions = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount * 3; i++) {
+  positions[i] = (Math.random() - 0.5) * 10;
+}
+particles.geometry.setAttribute(
+  "position",
+  new THREE.BufferAttribute(positions, 3)
+);
+
+scene.add(particles);
+
+const geometrySecond = new THREE.SphereGeometry(0.1, 8, 8);
+const materialSecond = new THREE.MeshBasicMaterial({ color: 0xffffff });
+const instanceCount = 1000;
+const instancedMesh = new THREE.InstancedMesh(
+  geometrySecond,
+  materialSecond,
+  instanceCount
+);
+
+scene.add(instancedMesh);
+
 // sun
 const seondShape = new THREE.Mesh(secondGeometry, seondMaterial);
 scene.add(seondShape);
@@ -291,6 +325,19 @@ function animate() {
   cube.rotation.y += 0.01;
   step += options.speed;
 
+  for (let i = 0; i < instanceCount; i++) {
+    const matrix = new THREE.Matrix4();
+    matrix.setPosition(
+      Math.random(10) * 10 - 5,
+      Math.random(10) * 10 - 5,
+      Math.random(10) * 10 - 5
+    );
+    instancedMesh.setMatrixAt(i, matrix);
+  }
+
+  particles.material.opacity = Math.random() * 0.5 + 0.5; // Example opacity
+  particles.material.transparent = true;
+  particles.material.needsUpdate = true;
   // mercury's orbit around the sun
   mercuryShape.position.x = 10 * Math.cos(step);
   mercuryShape.position.y = 11 - 20.7686 * Math.sin(step);
